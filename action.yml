@@ -38,6 +38,6 @@ runs:
       run: |
         escaped="$(echo "$MESSAGE" | sed 's/"/\\"/g')"
         echo $escaped
-        payload="{\"channel_id\":\"$MATTERMOST_CHANNEL_ID\",\"message\":\"Message from Github\", \"props\": {\"attachments\": [{ \"color\": \"$COLOR\", \"text\": "${escaped}"}]}}"
+        payload="{\"channel_id\":\"$MATTERMOST_CHANNEL_ID\",\"message\":\"Message from Github\", \"props\": {\"attachments\": [{ \"color\": \"$COLOR\", \"text\": \"${escaped}\"}]}}"
         echo $payload
         curl -X POST -H 'Content-Type: application/json' -H "Authorization: Bearer $MATTERMOST_BOT_TOKEN" -d "$payload" "https://$MATTERMOST_HOST/api/v4/posts"
